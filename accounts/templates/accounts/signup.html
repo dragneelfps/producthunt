@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    Sign Up
+{% endblock %}
+
+{% block customcss %}
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/signup.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+    <form class="form-signup" method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+
+        {% if error %}
+        <div class="alert alert-danger">
+            <strong>{{ error.title }}</strong> {{ error.message }}  
+        </div>
+        {% endif %}
+
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" name="password1" placeholder="Password" required>
+        <label for="confirmInputPassword" class="sr-only">Confirm Password</label>
+        <input type="password" id="confirmInputPassword" class="form-control" name="password2" placeholder="Confirm Password" required>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign Up" />
+    </form>
+</div>
+
+
+{% endblock %}

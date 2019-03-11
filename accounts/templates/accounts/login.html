@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    Login
+{% endblock %}
+
+{% block customcss %}
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+    <form class="form-signin" method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        {% if error %}
+        <div class="alert alert-danger">
+            <strong>{{ error.title }}</strong> {{ error.message }}  
+        </div>
+        {% endif %}
+
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in" />
+    </form>
+</div>
+
+
+{% endblock %}
