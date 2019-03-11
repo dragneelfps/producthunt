@@ -28,6 +28,9 @@
             }
         }
     </style>
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+
     {% block customcss %}
     {% endblock %}
 </head>
@@ -48,6 +51,9 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
+                        <a class="navbar-brand" href="{% url 'create' %}">
+                            <img src="{% static 'create.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+                        </a>
                         <span class="navbar-text">
                             {{ user.username }}
                         </span>
@@ -69,7 +75,7 @@
         </nav>
     </header>
 
-    <div class="container">
+    <div class="container" style="margin-bottom: 110px;">
         {% block content %}
         {% endblock %}
     </div>
@@ -95,6 +101,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    {% block endjs %}
+    {% endblock %}
+
 </body>
 
 </html>

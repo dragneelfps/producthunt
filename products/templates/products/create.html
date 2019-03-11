@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title%}
+Create
+{% endblock %}
+
+{% block customcss %}
+<!-- Custom styles for this template -->
+<link href="{% static 'css/create.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+    <form class="form-create" method="POST" action="{% url 'create' %}">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Create</h1>
+
+        {% if error %}
+        <div class="alert alert-danger">
+            <strong>{{ error.title }}</strong> {{ error.message }}
+        </div>
+        {% endif %}
+
+        <label for="inputTitle" class="sr-only">Title</label>
+        <input type="text" id="inputTitle" class="form-control" name="title" placeholder="Title" required autofocus>
+        <div class="form-group">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Body" name="body"></textarea>
+        </div>
+        <label for="inputUrl" class="sr-only">URL</label>
+        <input type="text" id="inputUrl" class="form-control" name="url" placeholder="URL">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Image</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01" name="image">
+                <label class="custom-file-label" for="inputGroupFile01" id="imageName">Choose file</label>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon02">Icon</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile02"
+                        aria-describedby="inputGroupFileAddon02" name="icon">
+                    <label class="custom-file-label" for="inputGroupFile02" id="iconName">Choose file</label>
+                </div>
+            </div>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Create" />
+    </form>
+</div>
+
+{% endblock %}
+
+{% block endjs %}
+<script>
+        $('#inputGroupFile01').on('change',function(){
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('#imageName').html(fileName);
+        });
+        $('#inputGroupFile02').on('change',function(){
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('#iconName').html(fileName);
+        })
+</script>
+{% endblock %}
