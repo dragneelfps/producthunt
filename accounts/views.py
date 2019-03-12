@@ -20,10 +20,12 @@ def signup(request):
         return render(request, 'accounts/signup.html')
 
 
-def login(request):
+def login(request, next=None):
     if request.method == 'POST':
         user = auth.authenticate(username=request.POST['email'], password=request.POST['password'])
         if user is not None:
+            if 'remember_me' in request.POST:
+                request.session.set_expiry(1209600) # 2 Weeks
             auth.login(request, user)
             return redirect('home')
         else:

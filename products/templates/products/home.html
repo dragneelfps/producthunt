@@ -2,6 +2,28 @@
 
 {% block content %}
 
-Home !
+<main role="main">
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for product in products.all %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" src="{{ product.image.url }}" />
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.title }}</h5>
+                            <p class="card-text">{{ product.summary }}</p>
+                            <a href="{% url 'detail' product.id %}" class="btn btn-primary">Got to Page</a>
+                            <span class="float-right"><i class="fas fa-chevron-up"></i>{{ product.votes_total }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</main>
 
 {% endblock %}
