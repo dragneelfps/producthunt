@@ -25,7 +25,8 @@ import search.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', products.views.home, name='home'),
-    path('accounts/', include('accounts.urls')),
+    path('accounts2/', include('accounts.urls')),
     path('products/', include('products.urls')),
     path('search', search.views.SearchView.as_view(), name='search'),
+    path('accounts/', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

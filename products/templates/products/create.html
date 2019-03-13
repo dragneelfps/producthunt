@@ -61,12 +61,17 @@ Create
             //get the file name
             var fileName = $(this).val();
             //replace the "Choose a file" label
+            if(fileName.includes('fakepath')){
+            }
             $(this).next('#imageName').html(fileName);
         });
         $('#inputGroupFile02').on('change',function(){
             //get the file name
             var fileName = $(this).val();
             //replace the "Choose a file" label
+            if(fileName.includes('fakepath')){
+                fileName = fileName.substring(fileName.indexOf('fakepath') + 9)
+            }
             $(this).next('#iconName').html(fileName);
         })
 </script>
