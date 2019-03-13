@@ -39,6 +39,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 INSTALLED_APPS = [
+    'search.apps.SearchConfig',
     'products.apps.ProductsConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',

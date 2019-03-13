@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from django.conf.urls.static import static 
+from django.conf.urls.static import static
 
 import products.views
+import search.views
 
 
 urlpatterns = [
@@ -26,4 +27,5 @@ urlpatterns = [
     path('', products.views.home, name='home'),
     path('accounts/', include('accounts.urls')),
     path('products/', include('products.urls')),
+    path('search', search.views.SearchView.as_view(), name='search'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main role="main">
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for product in products.all %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" src="{{ product.image.url }}" />
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.title }}</h5>
+                            <p class="card-text">{{ product.summary.summary }} {% if not product.summary.is_complete %}...{% endif %}</p>
+                            <a href="{% url 'detail' product.id %}" class="btn btn-primary">See Details</a>
+                            <span class="float-right"><i class="fas fa-chevron-up"></i>{{ product.votes_total }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <h4 class="mx-auto my-auto">No product found.</h4>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</main>
+
+{% endblock %}
