@@ -13,8 +13,8 @@
                         <img class="card-img-top" src="{{ product.image.url }}" />
                         <div class="card-body">
                             <h5 class="card-title">{{ product.title }}</h5>
-                            <p class="card-text">{{ product.summary }}</p>
-                            <a href="{% url 'detail' product.id %}" class="btn btn-primary">Got to Page</a>
+                            <p class="card-text">{{ product.summary.summary }} {% if not product.summary.is_complete %}...{% endif %}</p>
+                            <a href="{% url 'detail' product.id %}" class="btn btn-primary">See Details</a>
                             <span class="float-right"><i class="fas fa-chevron-up"></i>{{ product.votes_total }}</span>
                         </div>
                     </div>
